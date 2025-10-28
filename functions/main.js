@@ -37,4 +37,42 @@ const calculation = {
   },
 };
 
-export { capitalize, reverseString, calculation };
+function caesarCipher(message, key) {
+  let encryptedMessage = '';
+
+  const shift = key % 26;
+
+  for (let i = 0; i < message.length; i++) {
+    const originalCharCode = message.charCodeAt(i);
+
+    if (originalCharCode >= 65 && originalCharCode <= 90) {
+      let newCharCode = originalCharCode + shift;
+
+      if (newCharCode > 90) {
+        newCharCode = newCharCode - 26;
+      } else if (newCharCode < 65) {
+        newCharCode = newCharCode + 26;
+      }
+
+      encryptedMessage += String.fromCharCode(newCharCode);
+    } else if (originalCharCode >= 97 && originalCharCode <= 122) {
+      let newCharCode = originalCharCode + shift;
+
+      if (newCharCode > 122) {
+        newCharCode = newCharCode - 26;
+      } else if (newCharCode < 97) {
+        newCharCode = newCharCode + 26;
+      }
+
+      encryptedMessage += String.fromCharCode(newCharCode);
+    } else {
+      encryptedMessage += message[i];
+    }
+  }
+
+  return encryptedMessage;
+}
+
+caesarCipher('xFWHU', 7);
+
+export { capitalize, reverseString, calculation, caesarCipher };
