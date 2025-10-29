@@ -73,6 +73,29 @@ function caesarCipher(message, key) {
   return encryptedMessage;
 }
 
-caesarCipher('xFWHU', 7);
+function analyzeArray(arr) {
+  if (arr.length === 0 || !arr) {
+    return {
+      average: null,
+      min: null,
+      max: null,
+      length: 0,
+    };
+  }
 
-export { capitalize, reverseString, calculation, caesarCipher };
+  const len = arr.length;
+  const sum = arr.reduce((acc, cur) => acc + cur);
+
+  const average = sum / len;
+  const min = Math.min(...arr);
+  const max = Math.max(...arr);
+
+  return {
+    average: average,
+    min: min,
+    max: max,
+    length: len,
+  };
+}
+
+export { capitalize, reverseString, calculation, caesarCipher, analyzeArray };
